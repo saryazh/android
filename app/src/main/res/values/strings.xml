@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Food Chart</string>
+    <string name="food_name">Food Name</string>
+    <string name="add_food">Add Food</string>
+    <string name="schedule">Schedule</string>
+    <string name="loading">Loading...</string>
+    <string name="weekly_food_schedule">Weekly Food Schedule</string>
+    <string name="schedule_food">Schedule Food</string>
+    <string name="generate_random_food_chart">Generate Random Food Chart</string>
+    <string name="category">Category</string>
+    <string name="generate_random_chart">Generate Random Chart</string>
+</resources>
