@@ -24,9 +24,9 @@
         <activity android:name=".AddFoodActivity">
 
         </activity>
-        <activity android:name=".ScheduleFoodActivity">
+        <activity android:name=".ScheduleActivity">
 
-    </activity>
-    </application>
+        </activity>
+      </application>
 
 </manifest>

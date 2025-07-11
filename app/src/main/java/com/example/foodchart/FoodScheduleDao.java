@@ -2,27 +2,33 @@ package com.example.foodchart;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.DeleteColumn;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
 import java.util.List;
-
 @Dao
 public interface FoodScheduleDao {
-    @Insert
-    void insertFood(FoodItem foodItem);
 
-    @Insert
+    @Transaction
+    @Query("SELECT * FROM FoodSchedule ORDER BY dayOfWeek, mealType")
+    LiveData<List<ScheduleWithFood>> getWeeklySchedule();
+
+   @Insert
     void insertSchedule(FoodSchedule schedule);
 
+
+
     @Query("SELECT * FROM FoodItem")
-    List<FoodItem> getAllFoodItems();
+    LiveData<List<FoodItem>> getAllFoodItems();
 
-    @Query("SELECT fs.dayOfWeek, fs.mealType, fi.name, fi.category " +
-            "FROM FoodSchedule fs INNER JOIN FoodItem fi ON fs.foodItemId = fi.id")
-    List<ScheduleItem> getWeeklySchedule();
+    @Insert
+    void insertFoodSchedule(FoodSchedule schedule);
 
+    @Insert
+    void insertFoodItem(FoodItem item);
     @Query("DELETE FROM FoodSchedule")
     void clearSchedule();
 }

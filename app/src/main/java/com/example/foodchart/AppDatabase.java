@@ -5,17 +5,28 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-@Database(entities = {FoodItem.class, FoodSchedule.class}, version = 1)
-public abstract class AppDatabase extends RoomDatabase {
-    private static volatile AppDatabase INSTANCE;
 
-    public abstract FoodScheduleDao foodScheduleDao();
+@Database(entities = {FoodItem.class}, version = 1)
+public abstract class AppDatabase extends RoomDatabase {
+//    public abstract FoodScheduleDao foodScheduleDao();
+    public abstract FoodItemDao foodItemDao();
+    private static volatile AppDatabase INSTANCE;
+//    private static final int THREAD_COUNT = 4;
+
+//    public static final ExecutorService databaseWriteExecutor =
+//            Executors.newFixedThreadPool(THREAD_COUNT);
 
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = Room.databaseBuilder(context, AppDatabase.class, "food_chart_db")
-                    .allowMainThreadQueries()
-                    .build();
+            synchronized (AppDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                                    AppDatabase.class, "food_db")
+                            .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()
+                            .build();
+                }
+            }
         }
         return INSTANCE;
     }
