@@ -9,4 +9,8 @@
     <string name="generate_random_food_chart">Generate Random Food Chart</string>
     <string name="category">Category</string>
     <string name="generate_random_chart">Generate Random Chart</string>
+    <string name="day">Day</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="dinner">Dinner</string>
 </resources>

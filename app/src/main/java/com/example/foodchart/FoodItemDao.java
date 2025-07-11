@@ -1,8 +1,9 @@
 package com.example.foodchart;
 
-import androidx.lifecycle.LiveData;
+
 import androidx.room.Dao;
 import androidx.room.Insert;
+
 import androidx.room.Query;
 
 import java.util.List;
@@ -12,8 +13,14 @@ public interface FoodItemDao {
     @Insert
     void insert(FoodItem foodItem);
 
-    @Query("SELECT * FROM FoodItem")
-    LiveData<List<FoodItem>> getAllFoodItems();
-    @Query("SELECT * FROM FoodItem")
-    List<FoodItem> getAllFoodItemsNow();
+    @Query("SELECT * FROM food_table WHERE category = :category")
+    List<FoodItem> getFoodByCategory(String category);
+
+//    @Insert
+//    void insertAll(List<FoodItem> foodItems);
+//
+//    void clear();
+
+    @Query("SELECT * FROM food_table")
+    List<FoodItem> getAllFoodItems();
 }
